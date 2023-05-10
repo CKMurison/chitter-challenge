@@ -4,51 +4,65 @@ Copy this recipe template to design and create two related database tables from 
 
 1. Extract nouns from the user stories or specification
 
-# EXAMPLE USER STORY:
+# USER STORY:
 # (analyse only the relevant part - here the final line).
 
-As a social network user,
-So I can have my information registered,
-I'd like to have a user account with my email address.
+STRAIGHT UP
 
-As a social network user,
-So I can have my information registered,
-I'd like to have a user account with my username.
+As a Maker
+So that I can let people know what I am doing  
+I want to post a message (peep) to chitter
 
-As a social network user,
-So I can write on my timeline,
-I'd like to create posts associated with my user account.
+As a maker
+So that I can see what others are saying  
+I want to see all peeps in reverse chronological order
 
-As a social network user,
-So I can write on my timeline,
-I'd like each of my posts to have a title and a content.
+As a Maker
+So that I can better appreciate the context of a peep
+I want to see the time at which it was made
 
-As a social network user,
-So I can know who reads my posts,
-I'd like each of my posts to have a number of views.
+As a Maker
+So that I can post messages on Chitter as me
+I want to sign up for Chitter
 
-Nouns:  
+HARDER
 
-student_name, cohort_name, starting_date, student_cohorts
+As a Maker
+So that only I can post messages on Chitter as me
+I want to log in to Chitter
+
+As a Maker
+So that I can avoid others posting messages on Chitter as me
+I want to log out of Chitter
+
+ADVANCED
+
+As a Maker
+So that I can stay constantly tapped in to the shouty box of Chitter
+I want to receive an email if I am tagged in a Peep
+
+Nouns: 
+
+
 2. Infer the Table Name and Columns
 
 | table_name            | Properties          |
 | --------------------- | ------------------  |
-| users                 | email_address, user_name
-| posts                 | user_account, title, content, views
+| peeps                 | time_posted, content,
+| users                 | username, password, email
 
 Put the different nouns in this table. Replace the example with your own nouns.
 
 Record	Properties
-posts,	title, content
-comments,  content, names
+peep,	  time_posted, content
+user,   username, password, email
 Name of the first table (always plural): users
 
-Column users: email_address, user_name
+Column users: username, password, email
 
-Name of the second table (always plural): posts
+Name of the second table (always plural): peeps
 
-Column posts: user_account, title, content, views
+Column posts: time_posted, content
 
 3. Decide the column types.
 
@@ -62,15 +76,14 @@ Remember to always have the primary key id as a first column. Its type will alwa
 
 Table: users
 id: SERIAL
-email_address: text
-user_name: text
+username: text
+password: text
+email: text
 
-Table: posts
+Table: peeps
 id: SERIAL
-user_account: text
-title: text
+time_posted: timestamp
 content: text
-views: int
 
 4. Decide on The Tables Relationship
 
@@ -78,10 +91,10 @@ Most of the time, you'll be using a one-to-many relationship, and will need a fo
 
 To decide on which one, answer these two questions:
 
-Can a user have many posts? YES
-Can a post have many users? NO
+Can a user have many peeps? YES
+Can a peep have many users? NO
 
-users -> one-to-many -> posts
+users -> one-to-many -> peeps
 
 The foregin key is on posts(user_id)
 
@@ -89,29 +102,28 @@ The foregin key is on posts(user_id)
 4. Write the SQL.
 
 -- EXAMPLE
--- file: social_network_table.sql
+-- file: chitter_table.sql
 
 -- Replace the table name, columm names and types.
 
-CREATE TABLE posts (
+CREATE TABLE peeps (
   id SERIAL PRIMARY KEY,
-  user_account text,
-  title text,
-  content text,
-  views int
+  time_posted timestamp,
+  content text
 );
 
 
 -- Then the table with the foreign key first.
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  email_address text,
-  user_name text,
+  username text,
+  password text,
+  email text,
 -- The foreign key name is always {other_table_singular}_id
-  post_id int,
-	constraint fk_post foreign key (post_id) references posts(id)
+  peep_id int,
+	constraint fk_peep foreign key (peep_id) references peeps(id)
 );
 
 5. Create the tables.
 
-psql -h 127.0.0.1 student_directory < students_table.sql
+psql -h 127.0.0.1 chitter_table < chitter_table.sql

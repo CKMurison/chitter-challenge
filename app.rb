@@ -1,12 +1,11 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
-# file: app.rb
 require_relative 'lib/database_connection'
-require_relative
-require_relative
+require_relative 'lib/users_repository'
+require_relative 'lib/peeps_repository'
 
 # We need to give the database name to the method `connect`.
-DatabaseConnection.connect
+DatabaseConnection.connect('chitter_database')
 
 class Application < Sinatra::Base
   # This allows the app code to refresh
@@ -14,4 +13,10 @@ class Application < Sinatra::Base
   configure :development do
     register Sinatra::Reloader
   end
+
+  get '/' do
+    return erb(:index)
+  end
+
+  
 end

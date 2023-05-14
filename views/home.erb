@@ -1,0 +1,20 @@
+<html>
+  <head></head>
+  <body>
+    <h1>Welcome to the peep zone (͠≖ ͜ʖ͠≖)</h1>
+    <h2>Make a new peep here!</h2>
+    <form method="POST" action="/home">
+  <div>
+    <label>Whats on your mind?</lable>
+    <input type="text" name="peep" />
+  </div>
+  <input type="submit" />
+</form>
+    <div>
+     <% @peeps.each do |peep| %>
+        <p> Content:  <%= peep.content %></p>
+        <p> Time Posted : <%= peep.time_posted %></p>    
+     <% end %>
+    </div>
+  </body>
+</html>

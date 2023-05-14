@@ -39,14 +39,14 @@ class PeepsRepository
     DatabaseConnection.exec_params(sql, sql_params)
     # Doesn't need to return anything (only creates a record)
     return nil
-   end
+  end
 
-   def delete(id)
-    # Executes the SQL
+  def delete(id)
+   # Executes the SQL
     sql = 'DELETE FROM peeps WHERE id = $1;'
     sql_params = [id]
     DatabaseConnection.exec_params(sql, sql_params)
-    # Returns nothing (only deletes the record)
+   # Returns nothing (only deletes the record)
     return nil
-   end
+  end
 end

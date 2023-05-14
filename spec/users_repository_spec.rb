@@ -23,19 +23,19 @@ RSpec.describe UsersRepository do
   end
   
   context 'It find a certian user' do
-  it 'finds user 1' do
-  repo = UsersRepository.new
-    user = repo.find(1)
-    expect(user.username).to eq 'L4ZERH4WK'
-    expect(user.password).to eq '12345'
-    expect(user.email).to eq 'bob@email'
-  end
+    it 'finds user 1' do
+      repo = UsersRepository.new
+      user = repo.find(1)
+      expect(user.username).to eq 'L4ZERH4WK'
+      expect(user.password).to eq '12345'
+      expect(user.email).to eq 'bob@email'
+    end
 
-  it 'finds user 2' do 
-    repo = UsersRepository.new
-    user = repo.find(2)
-    expect(user.username).to eq 'Aphex'
-    expect(user.password).to eq '54321'
+    it 'finds user 2' do 
+      repo = UsersRepository.new
+      user = repo.find(2)
+      expect(user.username).to eq 'Aphex'
+      expect(user.password).to eq '54321'
     end
   end
 
@@ -47,7 +47,6 @@ RSpec.describe UsersRepository do
     new_user.username = 'Big Slime'
     new_user.password = 'Eight'
     new_user.email = 'bazza@yahoo'
-
 
     repo.create(new_user)
 

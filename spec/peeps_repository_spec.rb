@@ -31,20 +31,20 @@ RSpec.describe PeepsRepository do
   end
   
   context 'It find a certian peep' do
-  it 'finds peep 1' do
-  repo = PeepsRepository.new
-    peep = repo.find(1)
-    expect(peep.time_posted).to eq '2023-11-23 12:45:00'
-    expect(peep.content).to eq 'Take a look at that peep!'
-    expect(peep.user_id).to eq '1'
-  end
+    it 'finds peep 1' do
+      repo = PeepsRepository.new
+      peep = repo.find(1)
+      expect(peep.time_posted).to eq '2023-11-23 12:45:00'
+      expect(peep.content).to eq 'Take a look at that peep!'
+      expect(peep.user_id).to eq '1'
+    end
 
-  it 'finds peep 2' do 
-    repo = PeepsRepository.new
-    peep = repo.find(2)
-    expect(peep.time_posted).to eq '2023-12-23 19:14:00'
-    expect(peep.content).to eq 'Just ate a croissant'
-    expect(peep.user_id).to eq '2'
+    it 'finds peep 2' do 
+      repo = PeepsRepository.new
+      peep = repo.find(2)
+      expect(peep.time_posted).to eq '2023-12-23 19:14:00'
+      expect(peep.content).to eq 'Just ate a croissant'
+      expect(peep.user_id).to eq '2'
     end
   end
 
@@ -56,7 +56,6 @@ RSpec.describe PeepsRepository do
     new_peep.time_posted = '2022-11-23 12:45:00'
     new_peep.content = 'I love the gim'
     new_peep.user_id = '3'
-
 
     repo.create(new_peep)
 

@@ -34,6 +34,7 @@ class UsersRepository
 
     return user
   end
+
   def create(users)
     # Executes SQL query
     sql = 'INSERT INTO users (username, password, email) VALUES($1, $2, $3);'
@@ -41,14 +42,14 @@ class UsersRepository
     DatabaseConnection.exec_params(sql, sql_params)
     # Doesn't need to return anything (only creates a record)
     return nil
-   end
+  end
 
-   def delete(id)
-    # Executes the SQL
+  def delete(id)
+   # Executes the SQL
     sql = 'DELETE FROM users WHERE id = $1;'
     sql_params = [id]
     DatabaseConnection.exec_params(sql, sql_params)
-    # Returns nothing (only deletes the record)
+   # Returns nothing (only deletes the record)
     return nil
-   end
+  end
 end

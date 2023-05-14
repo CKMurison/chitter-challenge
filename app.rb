@@ -18,7 +18,7 @@ class Application < Sinatra::Base
     return erb(:index)
   end
 
-  get '/peeps' do
+  get '/home' do
     repo = PeepsRepository.new
     @peeps = repo.all
     return erb(:home)
